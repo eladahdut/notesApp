@@ -1,0 +1,14 @@
+<div className="card-body">
+          <p>{props.task.createdAt}</p>
+          <input
+            className="form-control border-0"
+            placeholder={props.task.taskTitle}></input>
+          <textarea
+            className=" form-control border-0 card-text"
+            placeholder={props.task.taskText}></textarea>
+          <div className="d-flex justify-content-center">
+            <button className="btn btn-outline-warning" onClick={toggleModal}>
+              Update
+            </button>
+          </div>
+        </div>
