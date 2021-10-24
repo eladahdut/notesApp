@@ -21,35 +21,48 @@ function Task(props) {
   }
 
   return (
-    <div className="card mt-2" style={{ width: "14rem" }}>
-      <div onClick={toggleModal} className="card-body">
+    <div
+      className="card rounded-3"
+      style={{ maxWidth: "14rem", marginTop: "1rem" }}>
+      <div className="card-body  p-2">
         <p>
+          created at: <br />
           <u>{props.task.createdAt}</u>
         </p>
         <h5>{props.task.taskTitle}</h5>
         <p className="card-text">{props.task.taskText}</p>
         <p>{props.task.editedAt}</p>
+        <div className="d-flex justify-content-around">
+          <button
+            className="align-self-center btn btn-outline-warning col-5"
+            onClick={toggleModal}>
+            Edit
+          </button>
+          <button
+            className="align-self-center btn btn-outline-danger col-5"
+            onClick={props.onDelete}>
+            Delete
+          </button>
+        </div>
       </div>
-      <button
-        className="align-self-center btn btn-outline-danger w-50"
-        onClick={props.onDelete}>
-        Delete
-      </button>
+
       <Modal isOpen={modalIsOpen} style={customStyles}>
-        <Form
-          textBtn={"Edit"}
-          taskTitle={props.task.taskTitle}
-          taskText={props.task.taskText}
-          onEditTask={(task) => {
-            props.onEditTask(task);
-            toggleModal();
-          }}
-          isEdit={true}
-          editedTask={props.task}
-        />
-        <button onClick={toggleModal} className="btn btn-outline-success">
-          Close
-        </button>
+        <div className="d-flex">
+          <Form
+            textBtn={"Edit"}
+            taskTitle={props.task.taskTitle}
+            taskText={props.task.taskText}
+            onEditTask={(task) => {
+              props.onEditTask(task);
+              toggleModal();
+            }}
+            isEdit={true}
+            editedTask={props.task}
+          />
+          <button onClick={toggleModal} className="btn btn-outline-success">
+            Cancel
+          </button>
+        </div>
       </Modal>
     </div>
   );
